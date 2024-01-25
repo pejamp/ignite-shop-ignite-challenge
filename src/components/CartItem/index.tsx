@@ -2,20 +2,29 @@ import Image from "next/image";
 
 import shitImage from '@/assets/1.png'
 import { CardContainer, CardImage, CardInfo } from "./styles";
+import { formatCurrency } from "@/utils/formatCurrency";
+import { useCart } from "@/contexts/CartContext";
 
-export interface CartItemProps {}
+interface CartItemProps {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+}
 
-export function CartItem(props: CartItemProps) {
+export function CartItem({ id, name, image, price }: CartItemProps) {
+  const { removeFromCart } = useCart()
+
   return (
     <CardContainer>
       <CardImage>
-        <Image src={shitImage} alt="" width={105} height={95} />
+        <Image src={image} alt="" width={105} height={95} />
       </CardImage>
 
       <CardInfo>
-        <span>Camiseta Beyond the Limits</span>
-        <strong>R$ 79,90</strong>
-        <button>Remover</button>
+        <span>{name}</span>
+        <strong>{formatCurrency(price)}</strong>
+        <button onClick={() => removeFromCart(id)}>Remover</button>
       </CardInfo>
     </CardContainer>
   )

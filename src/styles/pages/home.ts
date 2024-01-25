@@ -37,16 +37,16 @@ export const Product = styled('div', {
   minWidth: '43.5rem',
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
-  cursor: 'pointer',
   position: 'relative',
   overflow: 'hidden',
-
+  
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-
+  
   img: {
-    objectFit: 'cover'
+    objectFit: 'cover',
+    cursor: 'pointer',
   },
 
   footer: {

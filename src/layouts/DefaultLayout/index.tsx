@@ -6,30 +6,33 @@ import Image from "next/image";
 import logoImg from "@/assets/logo.svg";
 import { Cart } from "@/components/Cart";
 import { Handbag } from "@phosphor-icons/react";
+import { useCart } from "@/contexts/CartContext";
+import Link from "next/link";
 
 export interface DefaultLayoutProps {
   children: ReactNode;
 }
 
 export function DefaultLayout(props: DefaultLayoutProps) {
+  const { cartItems } = useCart()
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
-  const full = true
 
   function handleCartOpenChange(value: boolean) {
     setIsCartOpen(value);
-    console.log(value);
   }
 
   return (
     <Container>
       <Header>
-        <Image src={logoImg} alt="" />
+        <Link href={'/'}>
+          <Image src={logoImg} alt="" />
+        </Link>
 
         <Dialog.Root open={isCartOpen} onOpenChange={handleCartOpenChange}>
           <Dialog.Trigger asChild>
             <CartButton>
               <Handbag size={24} weight="bold" />
-              <span>1</span>
+              {cartItems.length > 0 && <span>{cartItems.length}</span>}
             </CartButton>
           </Dialog.Trigger>
 

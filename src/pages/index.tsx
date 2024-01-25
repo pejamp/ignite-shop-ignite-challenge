@@ -17,19 +17,21 @@ import Link from "next/link";
 import Head from "next/head";
 import { CaretLeft, CaretRight, Handbag } from "@phosphor-icons/react";
 import { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 interface HomeProps {
   products: {
     id: string;
     name: string;
     imageUrl: string;
-    price: string;
+    price: number;
   }[];
 }
 
 export default function Home({ products }: HomeProps) {
+  const { addToCart } = useCart()
   const [currentSlide, setCurrentSlide] = useState(0);
-  const originState = currentSlide === 0;
   const [sliderRef, instanceRef] = useKeenSlider({
     mode: "free-snap",
     slides: {
@@ -53,14 +55,14 @@ export default function Home({ products }: HomeProps) {
         <ProductSlider ref={sliderRef} className="keen-slider">
           {products.map((product, index) => {
             return (
-              <Link
-                href={`/product/${product.id}`}
+              <Product
                 key={product.id}
-                prefetch={false}
+                active={currentSlide === index}
+                className="keen-slider__slide"
               >
-                <Product
-                  active={currentSlide === index}
-                  className="keen-slider__slide"
+                <Link
+                  href={`/product/${product.id}`}
+                  prefetch={false}
                 >
                   <Image
                     src={product.imageUrl}
@@ -68,18 +70,18 @@ export default function Home({ products }: HomeProps) {
                     width={520}
                     height={480}
                   />
+                </Link>
 
-                  <footer>
-                    <div>
-                      <strong>{product.name}</strong>
-                      <span>{product.price}</span>
-                    </div>
-                    <ProductButton>
-                      <Handbag size={32} weight="bold" />
-                    </ProductButton>
-                  </footer>
-                </Product>
-              </Link>
+                <footer>
+                  <div>
+                    <strong>{product.name}</strong>
+                    <span>{formatCurrency(product.price)}</span>
+                  </div>
+                  <ProductButton onClick={() => addToCart(product)}>
+                    <Handbag size={32} weight="bold" />
+                  </ProductButton>
+                </footer>
+              </Product>
             );
           })}
         </ProductSlider>
@@ -125,10 +127,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(price.unit_amount / 100),
+      price: price.unit_amount,
     };
   });
 

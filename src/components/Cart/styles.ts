@@ -12,6 +12,17 @@ const fadeIn = keyframes({
    },
 });
 
+const fadeOut = keyframes({
+  '100%': { 
+    opacity: 0,
+    transform: 'translateX(110%)',
+   },
+  '0%': { 
+    opacity: 1,
+    transform: 'translateX(0%)',
+   },
+});
+
 export const Content = styled(Dialog.Content, {
   minHeight: '100vh',
   minWidth: '480px',
@@ -35,6 +46,9 @@ export const Content = styled(Dialog.Content, {
 
   '&[data-state="open"]': {
     animation: `${fadeIn} 300ms ease-out`,
+  },
+  '&[data-state="closed"]': {
+    animation: `${fadeOut} 300ms ease-out`,
   }
 })
 
@@ -95,8 +109,20 @@ export const BuyButton = styled('button', {
   fontWeight: 'bold',
   fontSize: '$md',
 
+  '&:disabled': {
+    opacity: 0.6,
+    cursor: 'not-allowed',
+  },
+
   '&:not(:disabled):hover': {
     backgroundColor: '$green300',
     transition: 'all 200ms ease-out'
   }
+})
+
+export const EmptyBox = styled('div', {
+  marginBottom: 'auto',
+  textAlign: 'center',
+  color: '$gray300',
+  fontSize: '$md',
 })

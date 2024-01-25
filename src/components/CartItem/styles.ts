@@ -8,6 +8,7 @@ export const CardContainer = styled('div', {
 
 export const CardImage = styled('span', {
   maxWidth: 100,
+  height: 'auto',
   borderRadius: 8,
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   display: 'flex',
