@@ -1,4 +1,5 @@
 import { useCart } from "@/contexts/CartContext";
+import { DefaultLayout } from "@/layouts/DefaultLayout";
 import { stripe } from "@/lib/stripe";
 import {
   ImageContainer,
@@ -6,11 +7,9 @@ import {
   ProductDetails,
 } from "@/styles/pages/product";
 import { formatCurrency } from "@/utils/formatCurrency";
-import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
 import Stripe from "stripe";
 
 interface ProductProps {
@@ -25,9 +24,7 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const { addToCart } = useCart()
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
-    useState(false);
+  const { addToCart } = useCart();
 
   async function handleBuyButton() {
     const newProduct = {
@@ -35,9 +32,9 @@ export default function Product({ product }: ProductProps) {
       name: product.name,
       imageUrl: product.imageUrl,
       price: product.price,
-    }
+    };
 
-    addToCart(newProduct)
+    addToCart(newProduct);
   }
 
   return (
@@ -46,23 +43,20 @@ export default function Product({ product }: ProductProps) {
         <title>{`${product.name} | Ignite Shop`}</title>
       </Head>
 
-      <ProductContainer>
-        <ImageContainer>
-          <Image src={product.imageUrl} width={520} height={480} alt="" />
-        </ImageContainer>
+      <DefaultLayout>
+        <ProductContainer>
+          <ImageContainer>
+            <Image src={product.imageUrl} width={520} height={480} alt="" />
+          </ImageContainer>
 
-        <ProductDetails>
-          <h1>{product.name}</h1>
-          <span>{formatCurrency(product.price)}</span>
-          <p>{product.description}</p>
-          <button
-            disabled={isCreatingCheckoutSession}
-            onClick={handleBuyButton}
-          >
-            Colocar na sacola
-          </button>
-        </ProductDetails>
-      </ProductContainer>
+          <ProductDetails>
+            <h1>{product.name}</h1>
+            <span>{formatCurrency(product.price)}</span>
+            <p>{product.description}</p>
+            <button onClick={handleBuyButton}>Colocar na sacola</button>
+          </ProductDetails>
+        </ProductContainer>
+      </DefaultLayout>
     </>
   );
 }

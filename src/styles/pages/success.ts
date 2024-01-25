@@ -18,13 +18,13 @@ export const SuccessContainer = styled('main', {
     color: '$gray300',
     maxWidth: 560,
     textAlign: 'center',
-    marginTop: '2rem',
+    marginTop: '1.5rem',
     lineHeight: 1.4,
   },
 
   a: {
     display: 'block',
-    marginTop: '5rem',
+    marginTop: '4rem',
     fontSize: '$lg',
     color: '$green500',
     textDecoration: 'none',
@@ -36,14 +36,28 @@ export const SuccessContainer = styled('main', {
   }
 })
 
+export const ImageList = styled('div', {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: '6.5rem',
+  marginBottom: '3rem',
+  gap: 'calc(-52px)'
+}) 
+
 export const ImageContainer = styled('div', {
   width: '100%',
-  maxWidth: 130,
-  height: 145,
+  maxWidth: 140,
+  height: 140,
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
+  boxShadow: '0px 0px 60px 0px rgba(0, 0, 0, 0.80)',
+  borderRadius: '50%',
   padding: '0.25rem',
-  marginTop: '4rem',
+
+  '& + &': {
+    marginLeft: '-52px',
+  },
 
   display: 'flex',
   alignItems: 'center',

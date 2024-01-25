@@ -36,7 +36,7 @@ export function DefaultLayout(props: DefaultLayoutProps) {
             </CartButton>
           </Dialog.Trigger>
 
-          <Cart isCartOpen={isCartOpen} onCartOpenChange={handleCartOpenChange} />
+          <Cart />
         </Dialog.Root>
       </Header>
       {props.children}

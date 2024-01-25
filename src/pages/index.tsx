@@ -19,6 +19,7 @@ import { CaretLeft, CaretRight, Handbag } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { DefaultLayout } from "@/layouts/DefaultLayout";
 
 interface HomeProps {
   products: {
@@ -51,66 +52,68 @@ export default function Home({ products }: HomeProps) {
         <title>Home | Ignite Shop</title>
       </Head>
 
-      <HomeContainer>
-        <ProductSlider ref={sliderRef} className="keen-slider">
-          {products.map((product, index) => {
-            return (
-              <Product
-                key={product.id}
-                active={currentSlide === index}
-                className="keen-slider__slide"
-              >
-                <Link
-                  href={`/product/${product.id}`}
-                  prefetch={false}
+      <DefaultLayout>
+        <HomeContainer>
+          <ProductSlider ref={sliderRef} className="keen-slider">
+            {products.map((product, index) => {
+              return (
+                <Product
+                  key={product.id}
+                  active={currentSlide === index}
+                  className="keen-slider__slide"
                 >
-                  <Image
-                    src={product.imageUrl}
-                    alt=""
-                    width={520}
-                    height={480}
-                  />
-                </Link>
+                  <Link
+                    href={`/product/${product.id}`}
+                    prefetch={false}
+                  >
+                    <Image
+                      src={product.imageUrl}
+                      alt=""
+                      width={520}
+                      height={480}
+                    />
+                  </Link>
 
-                <footer>
-                  <div>
-                    <strong>{product.name}</strong>
-                    <span>{formatCurrency(product.price)}</span>
-                  </div>
-                  <ProductButton onClick={() => addToCart(product)}>
-                    <Handbag size={32} weight="bold" />
-                  </ProductButton>
-                </footer>
-              </Product>
-            );
-          })}
-        </ProductSlider>
-        <ArrowButtonOverlay side={"left"}>
-          <button
-            disabled={currentSlide === 0}
-            onClick={(e) => {
-              e.stopPropagation();
-              instanceRef.current.prev();
-            }}
-          >
-            <CaretLeft size={48} weight="bold" />
-          </button>
-        </ArrowButtonOverlay>
-        <ArrowButtonOverlay side={"right"}>
-          <button
-            disabled={
-              currentSlide ===
-              instanceRef.current?.track.details.slides.length - 1
-            }
-            onClick={(e) => {
-              e.stopPropagation();
-              instanceRef.current.next();
-            }}
-          >
-            <CaretRight size={48} weight="bold" />
-          </button>
-        </ArrowButtonOverlay>
-      </HomeContainer>
+                  <footer>
+                    <div>
+                      <strong>{product.name}</strong>
+                      <span>{formatCurrency(product.price)}</span>
+                    </div>
+                    <ProductButton onClick={() => addToCart(product)}>
+                      <Handbag size={32} weight="bold" />
+                    </ProductButton>
+                  </footer>
+                </Product>
+              );
+            })}
+          </ProductSlider>
+          <ArrowButtonOverlay side={"left"}>
+            <button
+              disabled={currentSlide === 0}
+              onClick={(e) => {
+                e.stopPropagation();
+                instanceRef.current.prev();
+              }}
+            >
+              <CaretLeft size={48} weight="bold" />
+            </button>
+          </ArrowButtonOverlay>
+          <ArrowButtonOverlay side={"right"}>
+            <button
+              disabled={
+                currentSlide ===
+                instanceRef.current?.track.details.slides.length - 1
+              }
+              onClick={(e) => {
+                e.stopPropagation();
+                instanceRef.current.next();
+              }}
+            >
+              <CaretRight size={48} weight="bold" />
+            </button>
+          </ArrowButtonOverlay>
+        </HomeContainer>
+      </DefaultLayout>
     </>
   );
 }

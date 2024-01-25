@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   BuyButton,
@@ -14,11 +14,7 @@ import { useCart } from "@/contexts/CartContext";
 import { formatCurrency } from "@/utils/formatCurrency";
 import axios from "axios";
 
-export interface CartProps {
-  children?: ReactNode;
-  isCartOpen: boolean;
-  onCartOpenChange: (value: boolean) => void;
-}
+export interface CartProps {}
 
 export function Cart(props: CartProps) {
   const { cartItems } = useCart();
