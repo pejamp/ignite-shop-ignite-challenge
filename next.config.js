@@ -7,7 +7,10 @@ const nextConfig = {
       'files.stripe.com',
     ]
   },
-  
+
+  experimental: { 
+    optimizePackageImports: ['@phosphor-icons/react']
+  }
 }
 
 module.exports = nextConfig

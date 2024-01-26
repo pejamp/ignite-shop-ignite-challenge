@@ -8,7 +8,7 @@ import {
   ProductList,
   ProductsInfo,
 } from "./styles";
-import { X } from "@phosphor-icons/react";
+import { X } from '@phosphor-icons/react/X'
 import { CartItem } from "../CartItem";
 import { useCart } from "@/contexts/CartContext";
 import { formatCurrency } from "@/utils/formatCurrency";
@@ -25,7 +25,6 @@ export function Cart(props: CartProps) {
   }, 0);
 
   const isCartEmpty = cartItems.length === 0;
-  console.log(cartItems.map((item) => item.price));
 
   async function handleBuyButton() {
     try {

@@ -102,10 +102,12 @@ export const getServerSideProps: GetServerSideProps<any, { id: string }> = async
 }) => {
   const productId = params.id;
 
+  
   const product = await stripe.products.retrieve(productId, {
     expand: ["default_price"],
   });
-
+  console.log(productId, product)
+  
   const price = product.default_price as Stripe.Price;
 
   return {
