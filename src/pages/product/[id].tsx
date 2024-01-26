@@ -7,7 +7,7 @@ import {
   ProductDetails,
 } from "@/styles/pages/product";
 import { formatCurrency } from "@/utils/formatCurrency";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Stripe from "stripe";
@@ -61,18 +61,43 @@ export default function Product({ product }: ProductProps) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      {
-        params: { id: "prod_PM6lvoRNwgmJWG" },
-      },
-    ],
-    fallback: "blocking",
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [
+//       {
+//         params: { id: "prod_PM6lvoRNwgmJWG" },
+//       },
+//     ],
+//     fallback: "blocking",
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+// export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+//   params,
+// }) => {
+//   const productId = params.id;
+
+//   const product = await stripe.products.retrieve(productId, {
+//     expand: ["default_price"],
+//   });
+
+//   const price = product.default_price as Stripe.Price;
+
+//   return {
+//     props: {
+//       product: {
+//         id: product.id,
+//         name: product.name,
+//         imageUrl: product.images[0],
+//         price: price.unit_amount,
+//         description: product.description,
+//         defaultPriceId: price.id,
+//       },
+//     },
+//     revalidate: 60 * 60 * 1,
+//   };
+// };
+export const getServerSideProps: GetServerSideProps<any, { id: string }> = async ({
   params,
 }) => {
   const productId = params.id;
@@ -94,6 +119,6 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
         defaultPriceId: price.id,
       },
     },
-    revalidate: 60 * 60 * 1,
+    //revalidate: 60 * 60 * 1,
   };
 };

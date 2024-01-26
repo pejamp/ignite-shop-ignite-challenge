@@ -6,7 +6,8 @@ const nextConfig = {
     domains: [
       'files.stripe.com',
     ]
-  }
+  },
+  
 }
 
 module.exports = nextConfig

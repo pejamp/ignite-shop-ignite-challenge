@@ -11,12 +11,14 @@
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
     "@radix-ui/react-dialog": "^1.0.5",
+    "@react-aria/ssr": "^3.9.1",
     "@stitches/react": "^1.2.8",
     "axios": "^1.6.5",
     "keen-slider": "^6.8.6",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "sharp": "^0.33.2",
     "stripe": "^14.11.0"
   },
   "devDependencies": {
