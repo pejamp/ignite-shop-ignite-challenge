@@ -1,6 +1,4 @@
 import Image from "next/image";
-
-import shitImage from '@/assets/1.png'
 import { CardContainer, CardImage, CardInfo } from "./styles";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { useCart } from "@/contexts/CartContext";

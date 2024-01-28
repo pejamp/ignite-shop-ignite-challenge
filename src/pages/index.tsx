@@ -15,11 +15,11 @@ import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
 import Link from "next/link";
 import Head from "next/head";
-import { CaretLeft, CaretRight, Handbag } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { DefaultLayout } from "@/layouts/DefaultLayout";
+import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
 
 interface HomeProps {
   products: {

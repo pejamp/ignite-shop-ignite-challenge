@@ -8,11 +8,12 @@ import {
   ProductList,
   ProductsInfo,
 } from "./styles";
-import { X } from '@phosphor-icons/react/X'
+
 import { CartItem } from "../CartItem";
 import { useCart } from "@/contexts/CartContext";
 import { formatCurrency } from "@/utils/formatCurrency";
 import axios from "axios";
+import { X } from "phosphor-react";
 
 export interface CartProps {}
 

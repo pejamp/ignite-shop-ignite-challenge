@@ -5,9 +5,9 @@ import Image from "next/image";
 
 import logoImg from "@/assets/logo.svg";
 import { Cart } from "@/components/Cart";
-import { Handbag } from "@phosphor-icons/react";
 import { useCart } from "@/contexts/CartContext";
 import Link from "next/link";
+import { Handbag } from "phosphor-react";
 
 export interface DefaultLayoutProps {
   children: ReactNode;

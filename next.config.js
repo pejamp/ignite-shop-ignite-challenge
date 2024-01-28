@@ -8,8 +8,8 @@ const nextConfig = {
     ]
   },
 
-  experimental: { 
-    optimizePackageImports: ['@phosphor-icons/react']
+  experimental: {
+    optimizePackageImports: ['phosphor-react']
   }
 }
 
